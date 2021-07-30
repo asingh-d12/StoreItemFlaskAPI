@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -24,7 +26,7 @@ app.secret_key = "This is a Super Secret Key, so close eyes, close mouth and def
 # A few properties required by SQLAlchemy to work properly - Basically don't track everything in Flask
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Another SQLAlchemy config for the loction of db
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///testdb.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', "sqlite:///testdb.db")
 
 
 # Connecting DB to the app now
